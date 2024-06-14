@@ -1,22 +1,34 @@
-// routes/productRoutes.js
 const express = require('express');
 const {
   getProducts,
   addProduct,
   updateProduct,
   deleteProduct,
-  scheduleProductAddition
+  addToCart,
+  getCartItems,
+  removeFromCart,
+  scheduleAddToCart
 } = require('../controllers/productController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
-// Add a user-specific endpoint
-router.get('/:username', authMiddleware, getProducts);
+// Admin endpoints for managing products
 router.post('/:username', authMiddleware, addProduct);
 router.put('/:username/:id', authMiddleware, updateProduct);
 router.delete('/:username/:id', authMiddleware, deleteProduct);
 
-router.post('/:username/schedule', authMiddleware, scheduleProductAddition);
+// User endpoints for cart management
+
+router.post('/:username/cart/add/:productId', authMiddleware, addToCart);
+router.get('/:username/cart', authMiddleware, getCartItems);
+router.delete('/:username/cart/remove/:id', authMiddleware, removeFromCart);
+
+// User endpoints for scheduling cart additions
+router.post('/:username/cart/schedule/add/:productId', authMiddleware, scheduleAddToCart);
+
+
+// Public endpoint to fetch products by username
+router.get('/:username', getProducts);
 
 module.exports = router;

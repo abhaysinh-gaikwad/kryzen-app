@@ -1,6 +1,7 @@
-// models/User.js
+// User.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
+const Product = require('./Product');
 
 const User = sequelize.define('User', {
   id: {
@@ -22,6 +23,12 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 });
+
+User.belongsToMany(Product, { through: 'UserProducts' });
 
 module.exports = User;

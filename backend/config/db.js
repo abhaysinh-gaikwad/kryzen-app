@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
 // Create a connection pool
-const sequelize = new Sequelize("mysql://avnadmin:AVNS_fPSdjN3uJEzI2BDLT1e@mysql-2d9b1338-personal-finance-manangment.j.aivencloud.com:28649/kryzen?ssl-mode=REQUIRED");
+const sequelize = new Sequelize(`${process.env.DATABASE_URL}`);
 
 async function connectToDB(){
     try {
@@ -15,4 +15,5 @@ async function connectToDB(){
         console.log("unable to connect");
     }
 }
-module.exports =sequelize,connectToDB;
+connectToDB()
+module.exports = sequelize;

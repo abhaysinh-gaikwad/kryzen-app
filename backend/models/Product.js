@@ -1,7 +1,6 @@
-// models/Product.js
+// Product.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const User = require('./User');
 
 const Product = sequelize.define('Product', {
   id: {
@@ -15,26 +14,16 @@ const Product = sequelize.define('Product', {
   },
   image: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   price: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.DECIMAL(10, 2), // Adjust based on your requirement
     allowNull: false,
   },
   type: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: User,
-      key: 'id',
-    },
-  },
 });
-
-Product.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Product;
