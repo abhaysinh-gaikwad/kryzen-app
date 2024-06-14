@@ -29,7 +29,7 @@ const ProductPage = () => {
         sortBy
       };
 
-      const response = await axios.get('http://localhost:5000/api/products/abhay', {
+      const response = await axios.get('https://kryzen-app.onrender.com/api/products/abhay', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -45,7 +45,7 @@ const ProductPage = () => {
 
   const handleAddToCart = async (productId) => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/products/abhay/cart/add/${productId}`, null, {
+      const response = await axios.post(`https://kryzen-app.onrender.com/api/products/abhay/cart/add/${productId}`, null, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -65,7 +65,7 @@ const ProductPage = () => {
 
   const handleScheduleAddToCart = async (productId) => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/products/abhay/cart/schedule/add/${productId}`, { delay }, {
+      const response = await axios.post(`https://kryzen-app.onrender.com/api/products/abhay/cart/schedule/add/${productId}`, { delay }, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },

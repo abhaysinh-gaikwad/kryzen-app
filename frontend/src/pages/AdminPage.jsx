@@ -41,7 +41,7 @@ const AdminPage = () => {
         sortBy
       };
 
-      const response = await axios.get('http://localhost:5000/api/products/abhay', {
+      const response = await axios.get('https://kryzen-app.onrender.com/api/products/abhay', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -57,7 +57,7 @@ const AdminPage = () => {
 
   const handleDelete = async (productId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/products/admin/${productId}`, {
+      const response = await axios.delete(`https://kryzen-app.onrender.com/api/products/admin/${productId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -97,7 +97,7 @@ const AdminPage = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:5000/api/products/admin/${editFormData.id}`, editFormData, {
+      const response = await axios.put(`https://kryzen-app.onrender.com/api/products/admin/${editFormData.id}`, editFormData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -142,7 +142,7 @@ const AdminPage = () => {
   const handleNewProductSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/products/admin', newProductFormData, {
+      const response = await axios.post('https://kryzen-app.onrender.com/api/products/admin', newProductFormData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },

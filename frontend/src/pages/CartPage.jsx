@@ -9,7 +9,7 @@ const CartPage = () => {
 
   const fetchCartItems = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/products/abhay/cart', {
+      const response = await axios.get('https://kryzen-app.onrender.com/api/products/abhay/cart', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -27,7 +27,7 @@ const CartPage = () => {
 
   const handleRemoveFromCart = async (itemId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/products/abhay/cart/remove/${itemId}`, {
+      const response = await axios.delete(`https://kryzen-app.onrender.com/api/products/abhay/cart/remove/${itemId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },

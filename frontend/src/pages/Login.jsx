@@ -19,7 +19,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/signin', formData);
+            const response = await axios.post('https://kryzen-app.onrender.com/api/auth/signin', formData);
             if (response.data.token) {
                 localStorage.setItem('authToken', response.data.token);
                 if (formData.email === "admin@gmail.com") {
