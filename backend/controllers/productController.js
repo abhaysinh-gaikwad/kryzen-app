@@ -6,7 +6,43 @@ const scheduleAddProduct = require('../utils/scheduleAddProduct');
 // Controller to fetch all products
 exports.getProducts = async (req, res) => {
   try {
-    const products = await Product.findAll();
+    // Extract query parameters
+    const { minPrice, maxPrice, sortBy } = req.query;
+    let { type } = req.query;
+
+    // Build the filter object based on query parameters
+    const filter = {};
+    if (minPrice && !isNaN(minPrice)) {
+      filter.price = { [Op.gte]: parseFloat(minPrice) };
+    }
+    if (maxPrice && !isNaN(maxPrice)) {
+      if (filter.price) {
+        filter.price[Op.lte] = parseFloat(maxPrice);
+      } else {
+        filter.price = { [Op.lte]: parseFloat(maxPrice) };
+      }
+    }
+    if (type) {
+      type = type.toLowerCase(); // ensure case insensitivity
+      filter.type = type;
+    }
+
+    // Build the sorting options based on sortBy parameter
+    let sortOptions = [['createdAt', 'ASC']]; // Default sort by createdAt ascending
+    if (sortBy === 'createdAt-desc') {
+      sortOptions = [['createdAt', 'DESC']];
+    } else if (sortBy === 'price-asc') {
+      sortOptions = [['price', 'ASC']];
+    } else if (sortBy === 'price-desc') {
+      sortOptions = [['price', 'DESC']];
+    }
+
+    // Fetch products with applied filters and sorting
+    const products = await Product.findAll({
+      where: filter,
+      order: sortOptions,
+    });
+
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching products', details: error.message });
