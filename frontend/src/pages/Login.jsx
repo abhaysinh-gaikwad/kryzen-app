@@ -67,6 +67,7 @@ const Login = () => {
                     />
                 </div>
                 <button type="submit">Log In</button>
+                <button onClick={() => navigate('/signup')}>Sign Up</button>
             </form>
         </div>
     );

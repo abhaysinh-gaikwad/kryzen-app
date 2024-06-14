@@ -90,6 +90,7 @@ const Signup = () => {
           />
         </div>
         <button type="submit">Sign Up</button>
+        <button onClick={() => navigate('/login')}>Login</button>
       </form>
     </div>
   );
