@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './CartPage.css'; // Import the CartPage.css file for styling
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -49,16 +50,16 @@ const CartPage = () => {
   };
 
   return (
-    <div>
+    <div className="cart-page-container">
       <h1>My Cart</h1>
-      <button onClick={handleProducts}>Products</button>
-      <ul>
+      <button className="action-button" onClick={handleProducts}>Products</button>
+      <ul className="cart-item-list">
         {cartItems.map((item) => (
-          <li key={item.id} style={{ listStyle: 'none', border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
+          <li key={item.id} className="cart-item">
             <h3>{item.name}</h3>
             <p>Price: {item.price}</p>
             <p>Type: {item.type}</p>
-            <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
+            <button className="remove-button" onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
           </li>
         ))}
       </ul>

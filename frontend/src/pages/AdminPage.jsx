@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './AdminPage.css';
 
 const AdminPage = () => {
   const [products, setProducts] = useState([]);
@@ -178,60 +179,74 @@ const AdminPage = () => {
   };
 
   return (
-    <div>
+    <div className="admin-page-container">
       <h1>Admin Page</h1>
-      <button>Cart</button>
       <button onClick={handleLogout}>Logout</button>
 
       {/* Filter Form */}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Type:
-          <select name="type" value={filters.type} onChange={handleFilterChange}>
-            <option value="">All</option>
-            <option value="electronics">Electronics</option>
-            <option value="clothing">Clothing</option>
-            <option value="footwear">Footwear</option>
-            <option value="accessories">Accessories</option>
-            <option value="furniture">Furniture</option>
-          </select>
-        </label>
-        <label>
-          Min Price:
-          <input type="number" name="minPrice" value={filters.minPrice} onChange={handleFilterChange} />
-        </label>
-        <label>
-          Max Price:
-          <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleFilterChange} />
-        </label>
-        <label>
-          Sort By:
-          <select name="sortBy" value={filters.sortBy} onChange={handleFilterChange}>
-            <option value="createdAt-asc">Date Ascending</option>
-            <option value="createdAt-desc">Date Descending</option>
-            <option value="price-asc">Price Ascending</option>
-            <option value="price-desc">Price Descending</option>
-          </select>
-        </label>
-        <button type="submit">Apply Filters</button>
+      <form className="filter-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>
+            Type:
+            <select name="type" value={filters.type} onChange={handleFilterChange}>
+              <option value="">All</option>
+              <option value="electronics">Electronics</option>
+              <option value="clothing">Clothing</option>
+              <option value="footwear">Footwear</option>
+              <option value="accessories">Accessories</option>
+              <option value="furniture">Furniture</option>
+            </select>
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            Min Price:
+            <input type="number" name="minPrice" value={filters.minPrice} onChange={handleFilterChange} />
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            Max Price:
+            <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleFilterChange} />
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            Sort By:
+            <select name="sortBy" value={filters.sortBy} onChange={handleFilterChange}>
+              <option value="createdAt-asc">Date Ascending</option>
+              <option value="createdAt-desc">Date Descending</option>
+              <option value="price-asc">Price Ascending</option>
+              <option value="price-desc">Price Descending</option>
+            </select>
+          </label>
+        </div>
+        <div className="form-group">
+          <button type="submit">Apply Filters</button>
+        </div>
       </form>
 
       {/* Add Product Form */}
-      <div>
-        <h2>Add New Product</h2>
-        <form onSubmit={handleNewProductSubmit}>
+      <form className="add-product-form" onSubmit={handleNewProductSubmit}>
+        <div className="form-group">
           <label>
             Name:
             <input type="text" name="name" value={newProductFormData.name} onChange={handleNewProductFormChange} required />
           </label>
+        </div>
+        <div className="form-group">
           <label>
             Image URL:
             <input type="text" name="image" value={newProductFormData.image} onChange={handleNewProductFormChange} required />
           </label>
+        </div>
+        <div className="form-group">
           <label>
             Price:
             <input type="number" name="price" value={newProductFormData.price} onChange={handleNewProductFormChange} required />
           </label>
+        </div>
+        <div className="form-group">
           <label>
             Type:
             <select name="type" value={newProductFormData.type} onChange={handleNewProductFormChange} required>
@@ -243,53 +258,65 @@ const AdminPage = () => {
               <option value="furniture">Furniture</option>
             </select>
           </label>
+        </div>
+        <div className="form-group">
           <button type="submit">Add Product</button>
-        </form>
-      </div>
+        </div>
+      </form>
 
       {/* Product List */}
       <ul>
         {/* Edit Product Form */}
         {editFormData.id && (
-          <div>
+          <div className="edit-product-form">
             <h2>Edit Product</h2>
             <form onSubmit={handleEditSubmit}>
-              <label>
-                Name:
-                <input type="text" name="name" value={editFormData.name} onChange={handleEditFormChange} required />
-              </label>
-              <label>
-                Image URL:
-                <input type="text" name="image" value={editFormData.image} onChange={handleEditFormChange} required />
-              </label>
-              <label>
-                Price:
-                <input type="number" name="price" value={editFormData.price} onChange={handleEditFormChange} required />
-              </label>
-              <label>
-                Type:
-                <select name="type" value={editFormData.type} onChange={handleEditFormChange} required>
-                  <option value="">Select Type</option>
-                  <option value="electronics">Electronics</option>
-                  <option value="clothing">Clothing</option>
-                  <option value="footwear">Footwear</option>
-                  <option value="accessories">Accessories</option>
-                  <option value="furniture">Furniture</option>
-                </select>
-              </label>
-              <button type="submit">Update Product</button>
+              <div className="form-group">
+                <label>
+                  Name:
+                  <input type="text" name="name" value={editFormData.name} onChange={handleEditFormChange} required />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Image URL:
+                  <input type="text" name="image" value={editFormData.image} onChange={handleEditFormChange} required />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Price:
+                  <input type="number" name="price" value={editFormData.price} onChange={handleEditFormChange} required />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Type:
+                  <select name="type" value={editFormData.type} onChange={handleEditFormChange} required>
+                    <option value="">Select Type</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="footwear">Footwear</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="furniture">Furniture</option>
+                  </select>
+                </label>
+              </div>
+              <div className="form-group">
+                <button type="submit">Update Product</button>
+              </div>
             </form>
           </div>
         )}
 
         {/* Render Product List */}
         {products.map((product) => (
-          <li key={product.id} style={{ listStyle: 'none', border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
+          <li key={product.id} className="product-item">
             <h3>{product.name}</h3>
             <p>Price: {product.price}</p>
             <p>Type: {product.type}</p>
-            <button onClick={() => handleEdit(product)}>Edit</button>
-            <button onClick={() => handleDelete(product.id)}>Delete</button>
+            <button className="edit" onClick={() => handleEdit(product)}>Edit</button>
+            <button className="delete" onClick={() => handleDelete(product.id)}>Delete</button>
           </li>
         ))}
       </ul>
@@ -297,4 +324,6 @@ const AdminPage = () => {
   );
 };
 
+
 export default AdminPage;
+

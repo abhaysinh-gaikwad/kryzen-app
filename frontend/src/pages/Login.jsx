@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -44,6 +45,13 @@ const Login = () => {
             {message && <p className="success">{message}</p>}
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
+                <div style={ {textAlign: 'center', border: '1px solid #ccc'}}>
+                    <span style={{fontWeight: 'bold', margin: '10px'}} >login as admin</span><br />
+                    <span><b> email:</b> admin@gmail.com</span>
+                    <span><b> password:</b> admin</span>
+
+                </div>
+                
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
                     <input

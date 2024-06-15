@@ -1,6 +1,9 @@
+// src/pages/ProductPage.jsx
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './ProductPage.css'; // Import the CSS file
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
@@ -106,10 +109,12 @@ const ProductPage = () => {
   };
 
   return (
-    <div>
+    <div className="product-page-container">
       <h1>Product List</h1>
-      <button onClick={handleMyCart}>Cart</button>
-      <button onClick={handleLogout}>Logout</button>
+      <div className="action-buttons">
+        <button  onClick={handleMyCart}>Cart</button>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
 
       {/* Filter Form */}
       <form onSubmit={handleSubmit}>
@@ -147,19 +152,26 @@ const ProductPage = () => {
       {/* Product List */}
       <ul>
         {products.map((product) => (
-          <li key={product.id} style={{ listStyle: 'none', border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
+          <li key={product.id}>
             <h3>{product.name}</h3>
             <p>Price: {product.price}</p>
             <p>Type: {product.type}</p>
-            <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
-            <div>
-              <input
-                type="number"
-                placeholder="Enter minutes to schedule"
-                value={delay}
-                onChange={(e) => setDelay(e.target.value)}
-              />
-              <button onClick={() => handleScheduleAddToCart(product.id)}>Schedule Add to Cart</button>
+            <div className="action-group">
+              <div>
+                <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
+              </div>
+              <div>
+                <input
+                  type="number"
+                  placeholder="Enter minutes to schedule"
+                  value={delay}
+                  onChange={(e) => setDelay(e.target.value)}
+                  className="schedule-input"
+                />
+                <button onClick={() => handleScheduleAddToCart(product.id)} className="schedule-button">
+                  Schedule Add to Cart
+                </button>
+              </div>
             </div>
           </li>
         ))}

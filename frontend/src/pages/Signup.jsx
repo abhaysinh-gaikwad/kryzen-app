@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+// import './Signup.css';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -60,6 +61,7 @@ const Signup = () => {
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
+
             type="email"
             id="email"
             name="email"
@@ -71,22 +73,13 @@ const Signup = () => {
         <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
+        
             type="password"
             id="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="isAdmin">Admin:</label>
-          <input
-            type="checkbox"
-            id="isAdmin"
-            name="isAdmin"
-            checked={formData.isAdmin}
-            onChange={handleChange}
           />
         </div>
         <button type="submit">Sign Up</button>
