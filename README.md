@@ -2,7 +2,7 @@
 
 ## Overview
 
-Kryzen App is a backend API built with Node.js, Express.js, and MySQL for managing products, user carts, and administrative tasks. It provides endpoints for CRUD operations on products, cart management, and user authentication using JWT tokens. The API is designed to be scalable, secure, and ready for deployment.
+Kryzen App is a Full Stack App built with Node.js, Express.js, React, and MySQL for managing products, user carts, and administrative tasks. It provides endpoints for CRUD operations on products, cart management, and user authentication using JWT tokens. The API is designed to be scalable, secure, and ready for deployment.
 
 ## Tech Stack
 
@@ -10,9 +10,11 @@ Kryzen App is a backend API built with Node.js, Express.js, and MySQL for managi
 - **Express.js**: Fast, minimalist web framework for Node.js.
 - **MySQL**: Relational database for storing product and user data.
 - **Sequelize**: Promise-based ORM for Node.js and MySQL.
+- **React** : Used React for developing frontend
 - **JWT (JSON Web Tokens)**: Secure method for authentication.
 - **bcrypt**: Library for hashing passwords.
 - **axios**: Promise-based HTTP client for making requests to other APIs.
+
 
 ## Features
 
@@ -57,13 +59,6 @@ Follow these steps to set up the project locally:
 
 # Installation and Running Instructions
 
-## Backend Setup
-
-### Install Dependencies
-
-```bash
-npm install
-```
 ### Set up Environment Variables
 
  - Create a .env file in the root directory and add the following:
@@ -86,6 +81,7 @@ The server will start locally at http://localhost:5000.
 Frontend Setup
 
 ```bash
+cd frontend
 npm install
 npm run dev
 Start the frontend development server:
