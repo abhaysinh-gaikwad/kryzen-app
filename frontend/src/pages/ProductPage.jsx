@@ -1,8 +1,6 @@
-// src/pages/ProductPage.jsx
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './ProductPage.css'; // Import the CSS file
 
 const ProductPage = () => {
@@ -16,27 +14,26 @@ const ProductPage = () => {
   const [delay, setDelay] = useState(''); // State to hold scheduling delay
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams(); // For managing URL query params
 
+  // Load filters from URL parameters on component mount
   useEffect(() => {
+    const type = searchParams.get('type') || '';
+    const minPrice = searchParams.get('minPrice') || '';
+    const maxPrice = searchParams.get('maxPrice') || '';
+    const sortBy = searchParams.get('sortBy') || 'createdAt-asc';
+
+    setFilters({ type, minPrice, maxPrice, sortBy });
     fetchProducts();
-  }, [filters]); // Reload products when filters change
+  }, [searchParams]); // Reload products when searchParams change
 
   const fetchProducts = async () => {
     try {
-      // Prepare query parameters based on current filters state
-      const { type, minPrice, maxPrice, sortBy } = filters;
-      const queryParams = {
-        type,
-        minPrice,
-        maxPrice,
-        sortBy
-      };
-
       const response = await axios.get('https://kryzen-app.onrender.com/api/products/abhay', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
-        params: queryParams // Pass query parameters
+        params: filters // Pass current filters as query parameters
       });
 
       setProducts(response.data);
@@ -87,7 +84,7 @@ const ProductPage = () => {
   };
 
   const handleMyCart = () => {
-    navigate('/cart');
+    navigate(`/cart/${authToken}`);
   };
 
   const handleFilterChange = (e) => {
@@ -100,7 +97,8 @@ const ProductPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchProducts();
+    // Update URL query parameters with the new filter values
+    setSearchParams(filters);
   };
 
   const handleLogout = () => {
@@ -112,42 +110,43 @@ const ProductPage = () => {
     <div className="product-page-container">
       <h1>Product List</h1>
       <div className="action-buttons">
-        <button  onClick={handleMyCart}>Cart</button>
+        <button onClick={handleMyCart}>Cart</button>
         <button onClick={handleLogout}>Logout</button>
       </div>
 
       {/* Filter Form */}
       <form onSubmit={handleSubmit}>
-        <label>
-          Type:
-          <select name="type" value={filters.type} onChange={handleFilterChange}>
-            <option value="">All</option>
-            <option value="electronics">Electronics</option>
-            <option value="clothing">Clothing</option>
-            <option value="footwear">Footwear</option>
-            <option value="accessories">Accessories</option>
-            <option value="furniture">Furniture</option>
-          </select>
-        </label>
-        <label>
-          Min Price:
-          <input type="number" name="minPrice" value={filters.minPrice} onChange={handleFilterChange} />
-        </label>
-        <label>
-          Max Price:
-          <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleFilterChange} />
-        </label>
-        <label>
-          Sort By:
-          <select name="sortBy" value={filters.sortBy} onChange={handleFilterChange}>
-            <option value="createdAt-asc">Date Ascending</option>
-            <option value="createdAt-desc">Date Descending</option>
-            <option value="price-asc">Price Ascending</option>
-            <option value="price-desc">Price Descending</option>
-          </select>
-        </label>
-        <button type="submit">Apply Filters</button>
-      </form>
+  <label>
+    Type:
+    <select name="type" value={filters.type} onChange={handleFilterChange}>
+      <option value="">All</option>
+      <option value="electronics">Electronics</option>
+      <option value="clothing">Clothing</option>
+      <option value="footwear">Footwear</option>
+      <option value="accessories">Accessories</option>
+      <option value="furniture">Furniture</option>
+    </select>
+  </label>
+  <label>
+    Min Price:
+    <input type="number" name="minPrice" value={filters.minPrice} onChange={handleFilterChange} />
+  </label>
+  <label>
+    Max Price:
+    <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleFilterChange} />
+  </label>
+  <label>
+    Sort By:
+    <select name="sortBy" value={filters.sortBy} onChange={handleFilterChange}>
+      <option value="createdAt-asc">Date Ascending</option>
+      <option value="createdAt-desc">Date Descending</option>
+      <option value="price-asc">Price Ascending</option>
+      <option value="price-desc">Price Descending</option>
+    </select>
+  </label>
+  <button type="submit">Apply Filters</button>
+</form>
+
 
       {/* Product List */}
       <ul>

@@ -2,128 +2,133 @@
 
 /* Container styling */
 .product-page-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Heading styling */
-  .product-page-container h1 {
-    margin-bottom: 20px;
-  }
-  
-  /* Button styling */
-  .product-page-container .action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .product-page-container button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .product-page-container button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Form styling */
-  .product-page-container form {
-    margin-bottom: 20px;
-  }
-  
-  .product-page-container form label {
-    margin-right: 10px;
-  }
-  
-  .product-page-container form select,
-  .product-page-container form input[type="number"] {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .product-page-container form button[type="submit"] {
-    padding: 8px 16px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-  }
-  
-  .product-page-container form button[type="submit"]:hover {
-    background-color: #218838;
-  }
-  
-  /* Product List styling */
-  .product-page-container ul {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three items per row */
-    gap: 20px; /* Gap between grid items */
-  }
-  
-  .product-page-container li {
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
-  .product-page-container li h3 {
-    margin: 0;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .product-page-container li p {
-    margin: 5px 0;
-  }
-  
-  .product-page-container li .action-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px; /* Added margin between "Add to Cart" and scheduling elements */
-  }
-  
-  .product-page-container li button {
-    padding: 8px 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  
-  .product-page-container li button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Input for scheduling */
-  .product-page-container input[type="number"] {
-    width: 100px;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .product-page-container .schedule-button {
-    padding: 8px 12px;
-    background-color: #ffc107;
-    color: #333;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  
-  .product-page-container .schedule-button:hover {
-    background-color: #e0a800;
-  }
-  
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Heading styling */
+.product-page-container h1 {
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+.product-page-container .action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.product-page-container button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.product-page-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Form styling */
+.product-page-container form {
+  display: flex; /* Use Flexbox */
+  flex-wrap: wrap; /* Allow wrapping to the next line if needed */
+  gap: 10px; /* Space between items */
+  align-items: center; /* Vertically center items */
+  margin-bottom: 20px;
+}
+
+.product-page-container form label {
+  display: flex;
+  align-items: center;
+  margin: 0 10px 0 0; /* Space between label and its input */
+}
+
+.product-page-container form select,
+.product-page-container form input[type="number"] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.product-page-container form button[type="submit"] {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+.product-page-container form button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Product List styling */
+.product-page-container ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three items per row */
+  gap: 20px; /* Gap between grid items */
+}
+
+.product-page-container li {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.product-page-container li h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.product-page-container li p {
+  margin: 5px 0;
+}
+
+.product-page-container li .action-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px; /* Added margin between "Add to Cart" and scheduling elements */
+}
+
+.product-page-container li button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.product-page-container li button:hover {
+  background-color: #0056b3;
+}
+
+/* Input for scheduling */
+.product-page-container input[type="number"] {
+  width: 100px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.product-page-container .schedule-button {
+  padding: 8px 12px;
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.product-page-container .schedule-button:hover {
+  background-color: #e0a800;
+}

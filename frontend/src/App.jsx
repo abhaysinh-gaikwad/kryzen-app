@@ -6,15 +6,19 @@ import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import AdminPage from './pages/AdminPage';
 
+
+
 const App = () => {
+  
+
   return (
     
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/products" element={<ProductPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/products/:username" element={<ProductPage />} />
+        <Route path="/cart/:token" element={<CartPage />} />
+        <Route path="/admin/" element={<AdminPage />} />
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     

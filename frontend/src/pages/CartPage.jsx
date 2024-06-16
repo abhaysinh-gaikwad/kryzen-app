@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 import './CartPage.css'; // Import the CartPage.css file for styling
 
 const CartPage = () => {
+  // const 
   const [cartItems, setCartItems] = useState([]);
   const authToken = localStorage.getItem('authToken'); // Assuming token is stored in localStorage
   const navigate = useNavigate(); // Using useNavigate for navigation
 
+
   const fetchCartItems = async () => {
     try {
-      const response = await axios.get('https://kryzen-app.onrender.com/api/products/abhay/cart', {
+      const response = await axios.get(`https://kryzen-app.onrender.com/api/products/${username}/cart`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -45,11 +49,13 @@ const CartPage = () => {
     }
   };
 
+  const username = localStorage.getItem('username');
   const handleProducts = () => {
-    navigate('/products'); // Navigate to the '/product' route
+    navigate(`/products/${username}`); // Navigate to the '/product' route
   };
 
   return (
+    
     <div className="cart-page-container">
       <h1>My Cart</h1>
       <button className="action-button" onClick={handleProducts}>Products</button>

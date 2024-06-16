@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './AdminPage.css';
 
 const AdminPage = () => {
@@ -26,27 +26,26 @@ const AdminPage = () => {
   });
   const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams(); // For managing URL query params
 
   useEffect(() => {
+    // Initialize filters from URL parameters
+    const type = searchParams.get('type') || '';
+    const minPrice = searchParams.get('minPrice') || '';
+    const maxPrice = searchParams.get('maxPrice') || '';
+    const sortBy = searchParams.get('sortBy') || 'createdAt-asc';
+
+    setFilters({ type, minPrice, maxPrice, sortBy });
     fetchProducts();
-  }, [filters]); // Reload products when filters change
+  }, [searchParams]); // Reload products when searchParams change
 
   const fetchProducts = async () => {
     try {
-      // Prepare query parameters based on current filters state
-      const { type, minPrice, maxPrice, sortBy } = filters;
-      const queryParams = {
-        type,
-        minPrice,
-        maxPrice,
-        sortBy
-      };
-
       const response = await axios.get('https://kryzen-app.onrender.com/api/products/abhay', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
-        params: queryParams // Pass query parameters
+        params: filters // Pass current filters as query parameters
       });
 
       setProducts(response.data);
@@ -170,7 +169,8 @@ const AdminPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchProducts();
+    // Update URL query parameters with the new filter values
+    setSearchParams(filters);
   };
 
   const handleLogout = () => {
@@ -324,6 +324,4 @@ const AdminPage = () => {
   );
 };
 
-
 export default AdminPage;
-
