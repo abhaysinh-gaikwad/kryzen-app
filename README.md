@@ -20,10 +20,10 @@ Kryzen App is a Full Stack App built with Node.js, Express.js, React, and MySQL 
 
 - **Product Management**: CRUD operations for managing products.
 - **User Cart Management**: Add to cart, remove from cart functionalities.
+- **Dynamic URLs for Users**: Utilize dynamic URLs to provide personalized user experiences, such as accessing user-specific product and cart pages.
 - **Authentication**: Secure signup and login endpoints using JWT.
 - **Authorization**: Middleware for protecting routes using JWT tokens.
 - **Error Handling**: Centralized error handling middleware.
-- **Deployment Ready**: Configuration for deployment on platforms like Render.
 
 ## API Endpoints
 
