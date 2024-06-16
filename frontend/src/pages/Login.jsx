@@ -43,6 +43,10 @@ const Login = () => {
     return (
         <div className="form-container">
             <h1>Login Page</h1>
+            <div className="server-delay-notice" style={ { marginBottom: '10px', padding: '10px', border: '1px solid #ffa', backgroundColor: '#fff5e6', borderRadius: '5px', textAlign: 'center' } }>
+                <p style={ { fontSize: '14px', color: '#e68a00' } }>
+                    <strong style={ { color: '#e68a00',  fontSize: '16px'} }>Notice:</strong> <br /> If the server has been inactive for 15 minutes, there might be a slight delay in response when you log in or sign up. <br />Please be patient during this initial period. <br />Once the server is active, your experience will be much smoother.                </p>
+            </div>
             {message && <p className="success">{message}</p>}
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>

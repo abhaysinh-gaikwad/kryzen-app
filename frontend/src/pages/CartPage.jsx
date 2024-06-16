@@ -14,6 +14,7 @@ const CartPage = () => {
 
   const fetchCartItems = async () => {
     try {
+      const username = localStorage.getItem('username');
       const response = await axios.get(`https://kryzen-app.onrender.com/api/products/${username}/cart`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
@@ -49,9 +50,8 @@ const CartPage = () => {
     }
   };
 
-  const username = localStorage.getItem('username');
   const handleProducts = () => {
-    navigate(`/products/${username}`); // Navigate to the '/product' route
+    navigate(`/products/${localStorage.getItem('username')}`); // Navigate to the '/product' route
   };
 
   return (
