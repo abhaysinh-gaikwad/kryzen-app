@@ -31,7 +31,7 @@ const Login = () => {
                     setMessage('Logged in successfully!');
                     const getnameFromemail = formData.email.split('@')[0];
                     setError('');
-                    setTimeout(() => navigate(`/products/${getnameFromemail}`), 2000);
+                    setTimeout(() => navigate(`${getnameFromemail}/products`), 2000);
                 }
             }
         } catch (err) {

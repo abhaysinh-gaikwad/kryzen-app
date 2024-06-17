@@ -12,7 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/products/:username" element={<ProductPage />} />
+        <Route path="/:username/products" element={<ProductPage />} />
         <Route path="/cart/:token" element={<CartPage />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/" element={<Navigate to="/login" />} />

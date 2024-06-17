@@ -13,6 +13,7 @@ const ProductPage = () => {
   });
   const [delay, setDelay] = useState(''); // State to hold scheduling delay
   const authToken = localStorage.getItem('authToken');
+  const username = localStorage.getItem('username');
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams(); // For managing URL query params
 
@@ -84,7 +85,7 @@ const ProductPage = () => {
   };
 
   const handleMyCart = () => {
-    navigate(`/cart/${authToken}`);
+    navigate(`/cart/${username}`);
   };
 
   const handleFilterChange = (e) => {
