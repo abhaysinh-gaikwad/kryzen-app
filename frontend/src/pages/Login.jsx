@@ -23,15 +23,16 @@ const Login = () => {
             const response = await axios.post('https://kryzen-app.onrender.com/api/auth/signin', formData);
             if (response.data.token) {
                 localStorage.setItem('authToken', response.data.token);
+                const getnameFromemail = formData.email.split('@')[0];
+                localStorage.setItem('username', getnameFromemail); // Store the username
                 if (formData.email === "admin@gmail.com") {
                     setMessage('Logged in as admin successfully!');
                     setError('');
                     setTimeout(() => navigate('/admin'), 2000);
                 } else {
                     setMessage('Logged in successfully!');
-                    const getnameFromemail = formData.email.split('@')[0];
                     setError('');
-                    setTimeout(() => navigate(`${getnameFromemail}/products`), 2000);
+                    setTimeout(() => navigate(`/${getnameFromemail}/products`), 2000);
                 }
             }
         } catch (err) {
@@ -54,9 +55,7 @@ const Login = () => {
                     <span style={{fontWeight: 'bold', margin: '10px'}} >login as admin</span><br />
                     <span><b> email:</b> admin@gmail.com</span>
                     <span><b> password:</b> admin</span>
-
                 </div>
-                
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
                     <input

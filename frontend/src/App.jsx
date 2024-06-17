@@ -8,7 +8,6 @@ import AdminPage from './pages/AdminPage';
 
 const App = () => {
   return (
-
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -18,7 +17,6 @@ const App = () => {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="*" element={<h1>404 - Page Not Found</h1>} /> {/* Fallback route */}
       </Routes>
-
   );
 };
 

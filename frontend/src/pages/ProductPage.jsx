@@ -30,7 +30,7 @@ const ProductPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://kryzen-app.onrender.com/api/products/abhay', {
+      const response = await axios.get(`https://kryzen-app.onrender.com/api/products/${username}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -46,7 +46,7 @@ const ProductPage = () => {
 
   const handleAddToCart = async (productId) => {
     try {
-      const response = await axios.post(`https://kryzen-app.onrender.com/api/products/abhay/cart/add/${productId}`, null, {
+      const response = await axios.post(`https://kryzen-app.onrender.com/api/products/${username}/cart/add/${productId}`, null, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -66,7 +66,7 @@ const ProductPage = () => {
 
   const handleScheduleAddToCart = async (productId) => {
     try {
-      const response = await axios.post(`https://kryzen-app.onrender.com/api/products/abhay/cart/schedule/add/${productId}`, { delay }, {
+      const response = await axios.post(`https://kryzen-app.onrender.com/api/products/${username}/cart/schedule/add/${productId}`, { delay }, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -104,6 +104,7 @@ const ProductPage = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('username');
     navigate('/login');
   };
 
