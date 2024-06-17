@@ -5,6 +5,7 @@ import './ProductPage.css'; // Import the CSS file
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]); // State to hold cart items
   const [filters, setFilters] = useState({
     type: '',
     minPrice: '',
@@ -17,7 +18,6 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams(); // For managing URL query params
 
-  // Load filters from URL parameters on component mount
   useEffect(() => {
     const type = searchParams.get('type') || '';
     const minPrice = searchParams.get('minPrice') || '';
@@ -26,7 +26,8 @@ const ProductPage = () => {
 
     setFilters({ type, minPrice, maxPrice, sortBy });
     fetchProducts();
-  }, [searchParams]); // Reload products when searchParams change
+    fetchCartItems(); // Fetch cart items when component mounts
+  }, [searchParams]);
 
   const fetchProducts = async () => {
     try {
@@ -44,6 +45,20 @@ const ProductPage = () => {
     }
   };
 
+  const fetchCartItems = async () => {
+    try {
+      const response = await axios.get(`https://kryzen-app.onrender.com/api/products/${username}/cart`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      setCartItems(response.data); // Update cart items state
+    } catch (error) {
+      console.error('Error fetching cart items:', error);
+      // Handle error fetching cart items
+    }
+  };
+
   const handleAddToCart = async (productId) => {
     try {
       const response = await axios.post(`https://kryzen-app.onrender.com/api/products/${username}/cart/add/${productId}`, null, {
@@ -54,7 +69,7 @@ const ProductPage = () => {
 
       if (response.status === 200 || response.status === 201) {
         alert('Product added to cart successfully!');
-        // Optionally, you can update the UI or refetch products after adding to cart
+        fetchCartItems(); // Refresh cart items after adding
       } else {
         alert('Failed to add product to cart. Please try again.');
       }
@@ -108,6 +123,11 @@ const ProductPage = () => {
     navigate('/login');
   };
 
+  // Function to check if a product is in the cart
+  const isProductInCart = (productId) => {
+    return cartItems.some(item => item.id === productId);
+  };
+
   return (
     <div className="product-page-container">
       <h1>Product List</h1>
@@ -157,9 +177,11 @@ const ProductPage = () => {
             <p>Price: {product.price}</p>
             <p>Type: {product.type}</p>
             <div className="action-group">
-              <div>
+              {isProductInCart(product.id) ? (
+                <p className="in-cart">Already in cart</p>
+              ) : (
                 <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
-              </div>
+              )}
               <div>
                 <input
                   type="number"
@@ -167,8 +189,13 @@ const ProductPage = () => {
                   value={delay}
                   onChange={(e) => setDelay(e.target.value)}
                   className="schedule-input"
+                  disabled={isProductInCart(product.id)} // Disable scheduling if already in cart
                 />
-                <button onClick={() => handleScheduleAddToCart(product.id)} className="schedule-button">
+                <button
+                  onClick={() => handleScheduleAddToCart(product.id)}
+                  className="schedule-button"
+                  disabled={isProductInCart(product.id)} // Disable scheduling if already in cart
+                >
                   Schedule Add to Cart
                 </button>
               </div>
