@@ -32,19 +32,59 @@ Kryzen App is a Full Stack App built with Node.js, Express.js, React, and MySQL 
 - **Signup**: `POST /api/signup` - Register a new user.
 - **Signin**: `POST /api/signin` - Authenticate an existing user.
 
-### Product Management
 
-- **Add Product**: `POST /api/products/:username` - Add a new product.
-- **Update Product**: `PUT /api/products/:username/:id` - Update an existing product.
-- **Delete Product**: `DELETE /api/products/:username/:id` - Delete a product.
-- **Get Products**: `GET /api/products/:username` - Fetch all products by username.
+## Products Management
 
-### Cart Management
+### Add Product
 
-- **Add to Cart**: `POST /api/products/:username/cart/add/:productId` - Add a product to the cart.
-- **Get Cart Items**: `GET /api/products/:username/cart` - Fetch all items in the user's cart.
-- **Remove from Cart**: `DELETE /api/products/:username/cart/remove/:id` - Remove an item from the cart.
-- **Schedule Add to Cart**: `POST /api/products/:username/cart/schedule/add/:productId` - Schedule adding a product to the cart.
+- **Method**: `POST`
+- **Path**: `/api/products/:username`
+- **Description**: Add a new product for a specific user.
+
+### Update Product
+
+- **Method**: `PUT`
+- **Path**: `/api/products/:username/:id`
+- **Description**: Update an existing product by ID for a specific user.
+
+### Delete Product
+
+- **Method**: `DELETE`
+- **Path**: `/api/products/:username/:id`
+- **Description**: Delete a product by ID for a specific user.
+
+### Get Products
+
+- **Method**: `GET`
+- **Path**: `/api/products/:username`
+- **Description**: Fetch all products for a specific user.
+
+## Cart Management
+
+### Add to Cart
+
+- **Method**: `POST`
+- **Path**: `/api/products/:username/cart/add/:productId`
+- **Description**: Add a product to the cart for a specific user.
+
+### Get Cart Items
+
+- **Method**: `GET`
+- **Path**: `/api/products/:username/cart`
+- **Description**: Fetch all items in the user's cart for a specific user.
+
+### Remove from Cart
+
+- **Method**: `DELETE`
+- **Path**: `/api/products/:username/cart/remove/:id`
+- **Description**: Remove an item from the cart by ID for a specific user.
+
+### Schedule Add to Cart
+
+- **Method**: `POST`
+- **Path**: `/api/products/:username/cart/schedule/add/:productId`
+- **Description**: Schedule adding a product to the cart for a specific user.
+
 
 ## Installation
 
