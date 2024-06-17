@@ -116,37 +116,36 @@ const ProductPage = () => {
 
       {/* Filter Form */}
       <form onSubmit={handleSubmit}>
-  <label>
-    Type:
-    <select name="type" value={filters.type} onChange={handleFilterChange}>
-      <option value="">All</option>
-      <option value="electronics">Electronics</option>
-      <option value="clothing">Clothing</option>
-      <option value="footwear">Footwear</option>
-      <option value="accessories">Accessories</option>
-      <option value="furniture">Furniture</option>
-    </select>
-  </label>
-  <label>
-    Min Price:
-    <input type="number" name="minPrice" value={filters.minPrice} onChange={handleFilterChange} />
-  </label>
-  <label>
-    Max Price:
-    <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleFilterChange} />
-  </label>
-  <label>
-    Sort By:
-    <select name="sortBy" value={filters.sortBy} onChange={handleFilterChange}>
-      <option value="createdAt-asc">Date Ascending</option>
-      <option value="createdAt-desc">Date Descending</option>
-      <option value="price-asc">Price Ascending</option>
-      <option value="price-desc">Price Descending</option>
-    </select>
-  </label>
-  <button type="submit">Apply Filters</button>
-</form>
-
+        <label>
+          Type:
+          <select name="type" value={filters.type} onChange={handleFilterChange}>
+            <option value="">All</option>
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="footwear">Footwear</option>
+            <option value="accessories">Accessories</option>
+            <option value="furniture">Furniture</option>
+          </select>
+        </label>
+        <label>
+          Min Price:
+          <input type="number" name="minPrice" value={filters.minPrice} onChange={handleFilterChange} />
+        </label>
+        <label>
+          Max Price:
+          <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleFilterChange} />
+        </label>
+        <label>
+          Sort By:
+          <select name="sortBy" value={filters.sortBy} onChange={handleFilterChange}>
+            <option value="createdAt-asc">Date Ascending</option>
+            <option value="createdAt-desc">Date Descending</option>
+            <option value="price-asc">Price Ascending</option>
+            <option value="price-desc">Price Descending</option>
+          </select>
+        </label>
+        <button type="submit">Apply Filters</button>
+      </form>
 
       {/* Product List */}
       <ul>
